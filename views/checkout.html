@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Fresh Harvest</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Original stylesheet -->
+  <link rel="stylesheet" href="/css/styles.css">
+  <!-- Enhanced stylesheet -->
+  <link rel="stylesheet" href="/css/enhanced-styles.css">
+  <style>
+    /* Enhanced logo styling for better transparency */
+    .logo {
+      background: transparent !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 20px;
+      width: 80px;
+      height: 80px;
+      overflow: visible;
+    }
+    
+    .logo-img {
+      width: 100%;
+      height: auto;
+      background: transparent !important;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      filter: drop-shadow(0 0 0 transparent);
+      border-radius: 0;
+      box-shadow: none;
+      max-width: 100%;
+    }
+    
+    /* Updated header styling */
+    header {
+      background: linear-gradient(to bottom, #4CAF50, rgba(255, 255, 255, 0));
+      color: white;
+      padding: 1rem 0 3rem;
+      margin-bottom: -2rem;
+      border-bottom: none;
+      position: static;
+      z-index: 1000;
+      width: 100%;
+    }
+    
+    .checkout-form {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin: 2rem 0;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .address-header {
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+    }
+    
+    .address-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .address-col {
+      flex: 1;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    
+    label.required::after {
+      content: " *";
+      color: #f44336;
+    }
+    
+    input, textarea, select {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    
+    .invalid-feedback {
+      color: #f44336;
+      font-size: 0.85rem;
+      margin-top: 0.3rem;
+      display: none;
+    }
+    
+    input:invalid + .invalid-feedback,
+    textarea:invalid + .invalid-feedback {
+      display: block;
+    }
+    
+    .order-summary {
+      background-color: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 2rem;
+    }
+    
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .order-total {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      text-align: right;
+    }
+    
+    .back-to-cart {
+      margin-right: 1rem;
+      background-color: #757575;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-flex">
+      <div class="logo">
+        <a href="/">
+          <img src="/images/Index page logo.webp" alt="Fresh Harvest Logo" class="logo-img">
+        </a>
+      </div>
+      <div class="header-text">
+        <h1>Fresh Harvest</h1>
+        <p>Complete your order</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Checkout Progress Indicator -->
+    <div class="checkout-progress">
+      <div class="checkout-step step-completed">
+        <div class="step-number">1</div>
+        <div class="step-label">Cart</div>
+      </div>
+      <div class="checkout-step step-active">
+        <div class="step-number">2</div>
+        <div class="step-label">Delivery</div>
+      </div>
+      <div class="checkout-step">
+        <div class="step-number">3</div>
+        <div class="step-label">Payment</div>
+      </div>
+      <div class="checkout-step">
+        <div class="step-number">4</div>
+        <div class="step-label">Confirmation</div>
+      </div>
+    </div>
+    
+    <section class="checkout-form">
+      <h2>Delivery Information</h2>
+      <form id="checkoutForm" action="/submit-order" method="post">
+        <div class="form-group">
+          <label for="name" class="required">Full Name</label>
+          <input type="text" id="name" name="name" required>
+          <div class="invalid-feedback">Please enter your full name</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="email" class="required">Email Address</label>
+          <input type="email" id="email" name="email" required>
+          <div class="invalid-feedback">Please enter a valid email address</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone" class="required">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required>
+          <div class="invalid-feedback">Please enter your phone number</div>
+        </div>
+        
+        <h3 class="address-header">Delivery Address</h3>
+        
+        <div class="form-group">
+          <label for="streetAddress" class="required">Street Address</label>
+          <input type="text" id="streetAddress" name="streetAddress" required>
+          <div class="invalid-feedback">Please enter your street address</div>
+        </div>
+        
+        <div class="address-row">
+          <div class="address-col">
+            <label for="city" class="required">City</label>
+            <input type="text" id="city" name="city" required>
+            <div class="invalid-feedback">Please enter your city</div>
+          </div>
+          
+          <div class="address-col">
+            <label for="state" class="required">State/Province</label>
+            <input type="text" id="state" name="state" required>
+            <div class="invalid-feedback">Please enter your state or province</div>
+          </div>
+          
+          <div class="address-col">
+            <label for="postalCode" class="required">Postal/Zip Code</label>
+            <input type="text" id="postalCode" name="postalCode" required>
+            <div class="invalid-feedback">Please enter your postal code</div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="deliveryDate">Preferred Delivery Date</label>
+          <input type="date" id="deliveryDate" name="deliveryDate">
+        </div>
+        
+        <div class="form-group">
+          <label for="deliveryTime">Preferred Delivery Time</label>
+          <select id="deliveryTime" name="deliveryTime">
+            <option value="">Select a time</option>
+            <option value="morning">Morning (8am - 12pm)</option>
+            <option value="afternoon">Afternoon (12pm - 5pm)</option>
+            <option value="evening">Evening (5pm - 9pm)</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="notes">Special Instructions</label>
+          <textarea id="notes" name="notes" rows="3"></textarea>
+        </div>
+        
+        <div class="order-summary">
+          <h3>Order Summary</h3>
+          <div id="orderItems">
+            <!-- Order items will be populated from cart data -->
+          </div>
+          <div class="order-total">Total: <span id="orderTotal">$0.00</span></div>
+        </div>
+        
+        <div style="margin-top: 2rem; display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <a href="/cart" class="btn back-to-cart">Back to Cart</a>
+            <button type="submit" class="btn" id="submitOrder">Proceed to Payment</button>
+          </div>
+          <div style="font-size: 0.9rem;">* Required fields</div>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Fresh Harvest. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Get cart data from localStorage
+      const cart = JSON.parse(localStorage.getItem('freshHarvestCart')) || [];
+      const orderItemsContainer = document.getElementById('orderItems');
+      const orderTotal = document.getElementById('orderTotal');
+      const submitButton = document.getElementById('submitOrder');
+      const form = document.getElementById('checkoutForm');
+      
+      // Calculate and display order total
+      if (cart.length === 0) {
+        // No items in cart, show message and disable submit button
+        orderItemsContainer.innerHTML = '<p>Your cart is empty. Please add items to your cart before placing an order.</p>';
+        orderTotal.textContent = '$0.00';
+        submitButton.disabled = true;
+      } else {
+        // Display cart items and calculate total
+        let total = 0;
+        
+        cart.forEach(item => {
+          const itemTotal = item.price * item.quantity;
+          total += itemTotal;
+          
+          const orderItem = document.createElement('div');
+          orderItem.className = 'order-item';
+          orderItem.innerHTML = `
+            <span>${item.name} (${item.quantity})</span>
+            <span>$${itemTotal.toFixed(2)}</span>
+          `;
+          
+          orderItemsContainer.appendChild(orderItem);
+        });
+        
+        // Update order total
+        orderTotal.textContent = `$${total.toFixed(2)}`;
+        
+        // Add order items to hidden input
+        const orderItemsInput = document.createElement('input');
+        orderItemsInput.type = 'hidden';
+        orderItemsInput.name = 'orderItems';
+        orderItemsInput.value = JSON.stringify(cart);
+        document.getElementById('checkoutForm').appendChild(orderItemsInput);
+        
+        // Add order total to hidden input
+        const orderTotalInput = document.createElement('input');
+        orderTotalInput.type = 'hidden';
+        orderTotalInput.name = 'orderTotal';
+        orderTotalInput.value = total.toFixed(2);
+        document.getElementById('checkoutForm').appendChild(orderTotalInput);
+      }
+      
+      // Set minimum date to today
+      const today = new Date();
+      const formattedDate = today.toISOString().split('T')[0];
+      document.getElementById('deliveryDate').setAttribute('min', formattedDate);
+      
+      // Form validation
+      form.addEventListener('submit', function(event) {
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const streetAddress = document.getElementById('streetAddress').value.trim();
+        const city = document.getElementById('city').value.trim();
+        const state = document.getElementById('state').value.trim();
+        const postalCode = document.getElementById('postalCode').value.trim();
+        
+        // Check required fields
+        if (!name || !email || !phone || !streetAddress || !city || !state || !postalCode) {
+          event.preventDefault();
+          
+          if (!name) {
+            document.getElementById('name').focus();
+          } else if (!email) {
+            document.getElementById('email').focus();
+          } else if (!phone) {
+            document.getElementById('phone').focus();
+          } else if (!streetAddress) {
+            document.getElementById('streetAddress').focus();
+          } else if (!city) {
+            document.getElementById('city').focus();
+          } else if (!state) {
+            document.getElementById('state').focus();
+          } else if (!postalCode) {
+            document.getElementById('postalCode').focus();
+          }
+          
+          alert('Please fill out all required fields to continue.');
+        }
+        
+        // Combine address fields for the server
+        if (name && email && phone && streetAddress && city && state && postalCode) {
+          const fullAddress = `${streetAddress}, ${city}, ${state} ${postalCode}`;
+          
+          // Create a hidden field for the combined address
+          const addressInput = document.createElement('input');
+          addressInput.type = 'hidden';
+          addressInput.name = 'address';
+          addressInput.value = fullAddress;
+          form.appendChild(addressInput);
+        }
+      });
+    });
+  </script>
+</body>
+</html> 

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart - Fresh Harvest</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Original stylesheet -->
+  <link rel="stylesheet" href="/css/styles.css">
+  <!-- Enhanced stylesheet -->
+  <link rel="stylesheet" href="/css/enhanced-styles.css">
+  <style>
+    /* Enhanced logo styling for better transparency */
+    .logo {
+      background: transparent !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 20px;
+      width: 80px;
+      height: 80px;
+      overflow: visible;
+    }
+    
+    .logo-img {
+      width: 100%;
+      height: auto;
+      background: transparent !important;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      filter: drop-shadow(0 0 0 transparent);
+      border-radius: 0;
+      box-shadow: none;
+      max-width: 100%;
+    }
+    
+    /* Updated header styling */
+    header {
+      background: linear-gradient(to bottom, #4CAF50, rgba(255, 255, 255, 0));
+      color: white;
+      padding: 1rem 0 3rem;
+      margin-bottom: -2rem;
+      border-bottom: none;
+      position: static;
+      z-index: 1000;
+      width: 100%;
+    }
+    
+    .cart-page {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin: 2rem 0;
+    }
+    
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .cart-item-details {
+      display: flex;
+      align-items: center;
+    }
+    
+    .cart-item-name {
+      margin-right: 1rem;
+    }
+    
+    .cart-item-quantity {
+      display: flex;
+      align-items: center;
+    }
+    
+    .quantity-btn {
+      background-color: #e0e0e0;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .quantity-btn:hover {
+      background-color: #d0d0d0;
+    }
+    
+    .quantity-display {
+      margin: 0 10px;
+    }
+    
+    .cart-item-price {
+      font-weight: bold;
+    }
+    
+    .remove-item {
+      color: #f44336;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 2px solid #eee;
+    }
+    
+    .cart-total h3 {
+      font-size: 1.3rem;
+    }
+    
+    .empty-cart-message {
+      text-align: center;
+      padding: 2rem;
+      color: #757575;
+    }
+    
+    .continue-shopping {
+      margin-right: 1rem;
+      background-color: #757575;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-flex">
+      <div class="logo">
+        <a href="/">
+          <img src="/images/Index page logo.webp" alt="Fresh Harvest Logo" class="logo-img">
+        </a>
+      </div>
+      <div class="header-text">
+        <h1>Fresh Harvest</h1>
+        <p>Your Shopping Cart</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Checkout Progress Indicator -->
+    <div class="checkout-progress">
+      <div class="checkout-step step-active">
+        <div class="step-number">1</div>
+        <div class="step-label">Cart</div>
+      </div>
+      <div class="checkout-step">
+        <div class="step-number">2</div>
+        <div class="step-label">Delivery</div>
+      </div>
+      <div class="checkout-step">
+        <div class="step-number">3</div>
+        <div class="step-label">Payment</div>
+      </div>
+      <div class="checkout-step">
+        <div class="step-number">4</div>
+        <div class="step-label">Confirmation</div>
+      </div>
+    </div>
+    
+    <section class="cart-page">
+      <h2>Your Cart</h2>
+      <div id="cart-items">
+        <!-- Cart items will be added here dynamically -->
+        <p id="empty-cart-message" class="empty-cart-message">Your cart is empty. Please add items to continue shopping.</p>
+      </div>
+      <div class="cart-total">
+        <div>
+          <a href="/order" class="btn continue-shopping">Continue Shopping</a>
+          <button id="checkout-btn" class="btn" disabled>Proceed to Checkout</button>
+        </div>
+        <h3>Total: <span id="cart-total">$0.00</span></h3>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Fresh Harvest. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize cart from localStorage or create empty cart
+      let cart = JSON.parse(localStorage.getItem('freshHarvestCart')) || [];
+      
+      // Update cart display when page loads
+      updateCartDisplay();
+      
+      function updateCartDisplay() {
+        const cartItemsContainer = document.getElementById('cart-items');
+        const emptyCartMessage = document.getElementById('empty-cart-message');
+        const cartTotal = document.getElementById('cart-total');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        
+        // Clear current cart display
+        cartItemsContainer.innerHTML = '';
+        cartItemsContainer.appendChild(emptyCartMessage);
+        
+        if (cart.length === 0) {
+          // Show empty cart message
+          emptyCartMessage.style.display = 'block';
+          cartTotal.textContent = '$0.00';
+          checkoutBtn.disabled = true;
+        } else {
+          // Hide empty cart message
+          emptyCartMessage.style.display = 'none';
+          
+          // Add each item to the cart display
+          let total = 0;
+          cart.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            
+            const cartItem = document.createElement('div');
+            cartItem.className = 'cart-item';
+            
+            cartItem.innerHTML = `
+              <div class="cart-item-details">
+                <span class="cart-item-name">${item.name}</span>
+                <div class="cart-item-quantity">
+                  <button class="quantity-btn decrease" data-id="${item.id}">-</button>
+                  <span class="quantity-display">${item.quantity}</span>
+                  <button class="quantity-btn increase" data-id="${item.id}">+</button>
+                </div>
+              </div>
+              <div class="cart-item-actions">
+                <span class="cart-item-price">$${(itemTotal).toFixed(2)}</span>
+                <button class="remove-item" data-id="${item.id}">Remove</button>
+              </div>
+            `;
+            
+            cartItemsContainer.appendChild(cartItem);
+          });
+          
+          // Add event listeners to quantity buttons and remove buttons
+          cartItemsContainer.querySelectorAll('.quantity-btn.decrease').forEach(btn => {
+            btn.addEventListener('click', decreaseQuantity);
+          });
+          
+          cartItemsContainer.querySelectorAll('.quantity-btn.increase').forEach(btn => {
+            btn.addEventListener('click', increaseQuantity);
+          });
+          
+          cartItemsContainer.querySelectorAll('.remove-item').forEach(btn => {
+            btn.addEventListener('click', removeItem);
+          });
+          
+          // Update total and enable checkout button
+          cartTotal.textContent = `$${total.toFixed(2)}`;
+          checkoutBtn.disabled = false;
+        }
+      }
+      
+      // Function to increase item quantity
+      function increaseQuantity(event) {
+        const id = event.target.getAttribute('data-id');
+        const itemIndex = cart.findIndex(item => item.id === id);
+        
+        if (itemIndex > -1) {
+          cart[itemIndex].quantity += 1;
+          saveCart();
+          updateCartDisplay();
+        }
+      }
+      
+      // Function to decrease item quantity
+      function decreaseQuantity(event) {
+        const id = event.target.getAttribute('data-id');
+        const itemIndex = cart.findIndex(item => item.id === id);
+        
+        if (itemIndex > -1) {
+          if (cart[itemIndex].quantity > 1) {
+            cart[itemIndex].quantity -= 1;
+          } else {
+            // Remove item if quantity will be 0
+            cart.splice(itemIndex, 1);
+          }
+          
+          saveCart();
+          updateCartDisplay();
+        }
+      }
+      
+      // Function to remove item from cart
+      function removeItem(event) {
+        const id = event.target.getAttribute('data-id');
+        cart = cart.filter(item => item.id !== id);
+        
+        saveCart();
+        updateCartDisplay();
+      }
+      
+      // Function to save cart to localStorage
+      function saveCart() {
+        localStorage.setItem('freshHarvestCart', JSON.stringify(cart));
+      }
+      
+      // Add event listener to checkout button
+      document.getElementById('checkout-btn').addEventListener('click', () => {
+        window.location.href = '/checkout';
+      });
+    });
+  </script>
+</body>
+</html> 

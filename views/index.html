@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fresh Harvest - Quality Fruits and Vegetables</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Original stylesheet -->
+  <link rel="stylesheet" href="/css/styles.css">
+  <!-- Enhanced stylesheet -->
+  <link rel="stylesheet" href="/css/enhanced-styles.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+    
+    header {
+      background: linear-gradient(to bottom, #4CAF50, rgba(255, 255, 255, 0));
+      color: white;
+      padding: 1rem 0 3rem;
+      margin-bottom: -2rem;
+      border-bottom: none;
+      position: static;
+      z-index: 1000;
+      width: 100%;
+    }
+    
+    /* Enhanced logo styling for better transparency */
+    .logo {
+      background: transparent !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 20px;
+      width: 80px;
+      height: 80px;
+      overflow: visible;
+    }
+    
+    .logo-img {
+      width: 100%;
+      height: auto;
+      background: transparent !important;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      filter: drop-shadow(0 0 0 transparent);
+      border-radius: 0;
+      box-shadow: none;
+      max-width: 100%;
+    }
+    
+    .hero-section {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      border-radius: 0;
+      box-shadow: none;
+      margin-left: -20px;
+      margin-right: -20px;
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+    }
+    
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+      animation: heroZoom 20s infinite alternate ease-in-out;
+    }
+    
+    @keyframes heroZoom {
+      0% { transform: scale(1.05); }
+      100% { transform: scale(1.15); }
+    }
+    
+    .hero-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+    }
+    
+    .hero-content h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(46, 125, 50, 0.7);
+      animation: fadeInUp 1s ease-out;
+      background: none;
+      padding: 0;
+      border-radius: 0;
+    }
+    
+    .hero-content p {
+      font-size: 1.3rem;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(46, 125, 50, 0.7);
+      animation: fadeInUp 1s ease-out 0.3s both;
+      background: none;
+      padding: 0;
+      border-radius: 0;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Enhanced Category Thumbnails */
+    .category-thumbnails {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin: 2rem 0;
+    }
+    
+    .category-thumb {
+      position: relative;
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: all 0.4s ease;
+      transform: translateY(0);
+    }
+    
+    .category-thumb:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--hover-shadow);
+    }
+    
+    .category-thumb a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    
+    .category-img {
+      height: 280px;
+      width: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .category-thumb:hover .category-img {
+      transform: scale(1.08);
+    }
+    
+    .category-thumb h3 {
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Color-coded category thumbnails */
+    .category-thumb:nth-child(1) h3 {
+      color: var(--fruit-color);
+      border-top: 4px solid var(--fruit-color);
+    }
+    
+    .category-thumb:nth-child(2) h3 {
+      color: var(--vegetable-color);
+      border-top: 4px solid var(--vegetable-color);
+    }
+    
+    .category-thumb:nth-child(3) h3 {
+      color: var(--dried-food-color);
+      border-top: 4px solid var(--dried-food-color);
+    }
+    
+    /* More enhanced buttons */
+    .btn-lg {
+      padding: 1.2rem 2.5rem;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      background-color: #2196F3;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+    }
+    
+    .btn-lg:hover {
+      background-color: #1976D2;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(33, 150, 243, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-flex">
+      <div class="logo">
+        <a href="/">
+          <img src="/images/Index page logo.webp" alt="Fresh Harvest Logo" class="logo-img">
+        </a>
+      </div>
+      <div class="header-text">
+        <h1>Fresh Harvest</h1>
+        <p>Farm-fresh fruits, vegetables, and dried foods delivered to your door</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Section with the unused image -->
+    <section class="hero-section">
+      <img src="/images/index page pic.jpg" alt="Fresh Harvest Produce" class="hero-image">
+      <div class="hero-content">
+        <h2>From Farm to Your Table</h2>
+        <p>Experience the freshest, locally-sourced produce delivered right to your doorstep. We partner with local farmers to bring you the best quality fruits and vegetables.</p>
+        <!-- Shop Now button removed as requested -->
+      </div>
+    </section>
+    
+    <div style="text-align: center; margin: 3rem 0;" class="fade-in-delay-1">
+      <a href="/order" class="btn btn-lg" style="background-color: #2196F3; box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);">Start Your Order</a>
+    </div>
+    
+    <section class="intro fade-in">
+      <h2>Our Fresh Products</h2>
+      <p>Select from our wide range of fresh, organic produce direct from local farms.</p>
+    </section>
+
+    <section class="products fade-in">
+      <h2>Featured Products</h2>
+      
+      <div class="category-thumbnails">
+        <div class="category-thumb fade-in">
+          <a href="/order#fruits">
+            <img src="/images/fruits-category.jpg" alt="Fruits" class="category-img">
+            <h3>Fruits</h3>
+          </a>
+        </div>
+        <div class="category-thumb fade-in-delay-1">
+          <a href="/order#vegetables">
+            <img src="/images/Vegetables-category.jpg" alt="Vegetables" class="category-img">
+            <h3>Vegetables</h3>
+          </a>
+        </div>
+        <div class="category-thumb fade-in-delay-2">
+          <a href="/order#dried-foods">
+            <img src="/images/Dried-Food-category.jpg" alt="Dried Foods" class="category-img">
+            <h3>Dried Foods</h3>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Fresh Harvest. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html> 

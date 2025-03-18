@@ -1,0 +1,325 @@
+/* Enhanced Styles for Fresh Harvest Website 
+   This file contains visual improvements to enhance the website appearance */
+
+/* ---------- 1. EXTENDED COLOR PALETTE & GRADIENTS ---------- */
+:root {
+  /* Base colors */
+  --primary-green: #4CAF50;
+  --dark-green: #2E7D32;
+  --light-green: #8BC34A;
+  
+  /* Category-specific colors */
+  --fruit-color: #FF5722;  /* Vibrant red-orange for fruits */
+  --vegetable-color: #4CAF50; /* Green for vegetables */
+  --dried-food-color: #8D6E63; /* Earthy brown for dried goods */
+  
+  /* UI Colors */
+  --highlight-color: #FF9800;
+  --text-dark: #333333;
+  --text-light: #757575;
+  --background-light: #f8f9fa;
+  --card-background: #ffffff;
+  
+  /* Shadows */
+  --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  --hover-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------- 2. TYPOGRAPHY IMPROVEMENTS ---------- */
+body {
+  font-family: 'Open Sans', Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--dark-green);
+}
+
+h1 {
+  font-weight: 700;
+}
+
+h2 {
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+h3 {
+  font-weight: 600;
+  margin-top: 1.5rem;
+}
+
+p {
+  margin-bottom: 1.2rem;
+  line-height: 1.8;
+}
+
+/* ---------- 3. BUTTONS & INTERACTIVE ELEMENTS ---------- */
+.btn {
+  transition: all 0.3s ease;
+  font-weight: 600;
+  padding: 0.8em 1.5em;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+}
+
+.btn-lg {
+  padding: 1em 2em;
+  font-size: 1.1rem;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* ---------- 4. PRODUCT CARD STYLING ---------- */
+.product {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.product:hover {
+  box-shadow: var(--hover-shadow);
+  transform: translateY(-5px);
+}
+
+.product-img {
+  transition: transform 0.4s ease;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.product:hover .product-img {
+  transform: scale(1.05);
+}
+
+/* Color-coded category headers */
+#fruits h3 {
+  color: var(--fruit-color);
+  border-left: 4px solid var(--fruit-color);
+  padding-left: 10px;
+}
+
+#vegetables h3 {
+  color: var(--vegetable-color);
+  border-left: 4px solid var(--vegetable-color);
+  padding-left: 10px;
+}
+
+#dried-foods h3 {
+  color: var(--dried-food-color);
+  border-left: 4px solid var(--dried-food-color);
+  padding-left: 10px;
+}
+
+/* ---------- 5. ENHANCED LAYOUTS & SPACING ---------- */
+.container {
+  padding: 0 20px;
+  max-width: 1200px;
+}
+
+section {
+  margin-bottom: 3rem;
+  padding-top: 1rem;
+}
+
+.hero-section {
+  margin-bottom: 3rem;
+}
+
+/* Improved spacing for product listings */
+.product-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+/* ---------- 6. HEADER & NAVIGATION STYLES ---------- */
+header {
+  background: linear-gradient(135deg, var(--dark-green), var(--primary-green));
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------- 7. ANIMATIONS & TRANSITIONS ---------- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.fade-in-delay-1 {
+  animation: fadeIn 0.6s ease 0.2s forwards;
+  opacity: 0;
+}
+
+.fade-in-delay-2 {
+  animation: fadeIn 0.6s ease 0.4s forwards;
+  opacity: 0;
+}
+
+/* ---------- 8. IMPROVED CART & CHECKOUT PROCESS ---------- */
+.cart-button {
+  transition: all 0.3s ease;
+}
+
+.cart-button:hover {
+  transform: scale(1.1);
+}
+
+/* Progress indicators for checkout steps */
+.checkout-progress {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.checkout-progress::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: var(--background-light);
+  z-index: -1;
+}
+
+.checkout-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.step-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--background-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: var(--text-light);
+  border: 2px solid transparent;
+}
+
+.step-active .step-number {
+  background-color: var(--primary-green);
+  color: white;
+}
+
+.step-completed .step-number {
+  background-color: var(--light-green);
+  color: white;
+}
+
+/* ---------- 9. RESPONSIVE ENHANCEMENTS ---------- */
+@media (max-width: 768px) {
+  .product-items {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .hero-content h2 {
+    font-size: 2rem;
+  }
+  
+  .checkout-progress {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .checkout-step {
+    flex-direction: row;
+    margin-bottom: 1rem;
+  }
+  
+  .step-number {
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-items {
+    grid-template-columns: 1fr;
+  }
+  
+  .header-flex {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .logo {
+    margin: 0 auto;
+  }
+}
+
+/* ---------- 10. MISC & UTILITY STYLES ---------- */
+.text-center {
+  text-align: center;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mb-1 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-2 {
+  margin-bottom: 1rem;
+}
+
+.mb-3 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 2rem;
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+
+.mt-1 {
+  margin-top: 0.5rem;
+}
+
+.mt-2 {
+  margin-top: 1rem;
+}
+
+.mt-3 {
+  margin-top: 1.5rem;
+}
+
+.mt-4 {
+  margin-top: 2rem;
+} 

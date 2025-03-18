@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Products - Fresh Harvest</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Original stylesheet -->
+  <link rel="stylesheet" href="/css/styles.css">
+  <!-- Enhanced stylesheet -->
+  <link rel="stylesheet" href="/css/enhanced-styles.css">
+  <style>
+    /* Enhanced logo styling for better transparency */
+    .logo {
+      background: transparent !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 20px;
+      width: 80px;
+      height: 80px;
+      overflow: visible;
+    }
+    
+    .logo-img {
+      width: 100%;
+      height: auto;
+      background: transparent !important;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      filter: drop-shadow(0 0 0 transparent);
+      border-radius: 0;
+      box-shadow: none;
+      max-width: 100%;
+    }
+    
+    /* Updated header styling */
+    header {
+      background: linear-gradient(to bottom, #4CAF50, rgba(255, 255, 255, 0));
+      color: white;
+      padding: 1rem 0 3rem;
+      margin-bottom: -2rem;
+      border-bottom: none;
+      position: static;
+      z-index: 1000;
+      width: 100%;
+    }
+    
+    .order-header {
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin: 2rem 0;
+      text-align: center;
+    }
+    
+    .order-header h2 {
+      color: #2E7D32;
+      margin-bottom: 1rem;
+    }
+    
+    .order-header p {
+      margin-bottom: 1.5rem;
+    }
+    
+    .category-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .category-nav a {
+      padding: 0.8rem 1.5rem;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    
+    .category-nav a:hover {
+      background-color: #2E7D32;
+    }
+    
+    .product-category {
+      margin-bottom: 3rem;
+      padding-top: 2rem;
+    }
+    
+    .cart-button-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+    }
+    
+    .cart-button {
+      background-color: #FF9800;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    
+    .cart-button:hover {
+      background-color: #F57C00;
+    }
+    
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: #f44336;
+      color: white;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-flex">
+      <div class="logo">
+        <a href="/">
+          <img src="/images/Index page logo.webp" alt="Fresh Harvest Logo" class="logo-img">
+        </a>
+      </div>
+      <div class="header-text">
+        <h1>Fresh Harvest</h1>
+        <p>Select your fresh products</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="order-header">
+      <h2>Browse Our Products</h2>
+      <p>All our products are sourced from local farms and delivered fresh to your door.</p>
+      
+      <div class="category-nav">
+        <a href="#fruits">Fruits</a>
+        <a href="#vegetables">Vegetables</a>
+        <a href="#dried-foods">Dried Foods</a>
+      </div>
+    </section>
+
+    <div class="product-grid">
+      <!-- Fruits Section -->
+      <span id="fruits" class="section-link"></span>
+      <div class="product-category">
+        <h3>Fruits</h3>
+        <div class="product-items">
+          <div class="product fade-in">
+            <img src="/images/fruits-category.jpg" alt="Apples" class="product-img">
+            <h4>Organic Apples</h4>
+            <p>AU$3.99/kg</p>
+            <button class="add-to-cart" data-id="apple" data-price="3.99" data-name="Organic Apples">Add to Cart</button>
+          </div>
+          <div class="product fade-in-delay-1">
+            <img src="/images/fruits-category.jpg" alt="Bananas" class="product-img">
+            <h4>Bananas</h4>
+            <p>AU$1.99/kg</p>
+            <button class="add-to-cart" data-id="banana" data-price="1.99" data-name="Bananas">Add to Cart</button>
+          </div>
+          <div class="product fade-in-delay-2">
+            <img src="/images/fruits-category.jpg" alt="Mixed Berries" class="product-img">
+            <h4>Mixed Berries</h4>
+            <p>AU$4.99/box</p>
+            <button class="add-to-cart" data-id="berries" data-price="4.99" data-name="Mixed Berries">Add to Cart</button>
+          </div>
+          <div class="product fade-in">
+            <img src="/images/fruits-category.jpg" alt="Oranges" class="product-img">
+            <h4>Juicy Oranges</h4>
+            <p>AU$2.99/kg</p>
+            <button class="add-to-cart" data-id="orange" data-price="2.99" data-name="Juicy Oranges">Add to Cart</button>
+          </div>
+          <div class="product fade-in-delay-1">
+            <img src="/images/fruits-category.jpg" alt="Grapes" class="product-img">
+            <h4>Seedless Grapes</h4>
+            <p>AU$3.49/kg</p>
+            <button class="add-to-cart" data-id="grapes" data-price="3.49" data-name="Seedless Grapes">Add to Cart</button>
+          </div>
+          <div class="product fade-in-delay-2">
+            <img src="/images/fruits-category.jpg" alt="Kiwi" class="product-img">
+            <h4>Kiwi Fruit</h4>
+            <p>AU$0.99/each</p>
+            <button class="add-to-cart" data-id="kiwi" data-price="0.99" data-name="Kiwi Fruit">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Vegetables Section -->
+      <span id="vegetables" class="section-link"></span>
+      <div class="product-category">
+        <h3>Vegetables</h3>
+        <div class="product-items">
+          <div class="product fade-in">
+            <img src="/images/Vegetables-category.jpg" alt="Carrots" class="product-img">
+            <h4>Organic Carrots</h4>
+            <p>AU$2.49/kg</p>
+            <button class="add-to-cart" data-id="carrot" data-price="2.49" data-name="Organic Carrots">Add to Cart</button>
+          </div>
+          <div class="product fade-in-delay-1">
+            <img src="/images/Vegetables-category.jpg" alt="Tomatoes" class="product-img">
+            <h4>Vine Tomatoes</h4>
+            <p>AU$3.49/kg</p>
+            <button class="add-to-cart" data-id="tomato" data-price="3.49" data-name="Vine Tomatoes">Add to Cart</button>
+          </div>
+          <div class="product fade-in-delay-2">
+            <img src="/images/Vegetables-category.jpg" alt="Broccoli" class="product-img">
+            <h4>Broccoli</h4>
+            <p>AU$2.99/kg</p>
+            <button class="add-to-cart" data-id="broccoli" data-price="2.99" data-name="Broccoli">Add to Cart</button>
+          </div>
+          <div class="product fade-in">
+            <img src="/images/Vegetables-category.jpg" alt="Spinach" class="product-img">
+            <h4>Baby Spinach</h4>
+            <p>AU$3.99/bag</p>
+            <button class="add-to-cart" data-id="spinach" data-price="3.99" data-name="Baby Spinach">Add to Cart</button>
+          </div>
+          <div class="product fade-in-delay-1">
+            <img src="/images/Vegetables-category.jpg" alt="Potatoes" class="product-img">
+            <h4>Russet Potatoes</h4>
+            <p>AU$1.49/kg</p>
+            <button class="add-to-cart" data-id="potato" data-price="1.49" data-name="Russet Potatoes">Add to Cart</button>
+          </div>
+          <div class="product fade-in-delay-2">
+            <img src="/images/Vegetables-category.jpg" alt="Cucumber" class="product-img">
+            <h4>Cucumbers</h4>
+            <p>AU$1.99/each</p>
+            <button class="add-to-cart" data-id="cucumber" data-price="1.99" data-name="Cucumbers">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Dried Foods Section -->
+      <span id="dried-foods" class="section-link"></span>
+      <div class="product-category">
+        <h3>Dried Foods</h3>
+        <div class="product-items">
+          <div class="product fade-in">
+            <img src="/images/Dried-Food-category.jpg" alt="Mixed Nuts" class="product-img">
+            <h4>Mixed Nuts</h4>
+            <p>AU$6.99/500g</p>
+            <button class="add-to-cart" data-id="nuts" data-price="6.99" data-name="Mixed Nuts">Add to Cart</button>
+          </div>
+          <div class="product fade-in-delay-1">
+            <img src="/images/Dried-Food-category.jpg" alt="Dried Fruit" class="product-img">
+            <h4>Dried Fruit Mix</h4>
+            <p>AU$5.49/250g</p>
+            <button class="add-to-cart" data-id="dried-fruit" data-price="5.49" data-name="Dried Fruit Mix">Add to Cart</button>
+          </div>
+          <div class="product fade-in-delay-2">
+            <img src="/images/Dried-Food-category.jpg" alt="Trail Mix" class="product-img">
+            <h4>Trail Mix</h4>
+            <p>AU$7.99/350g</p>
+            <button class="add-to-cart" data-id="trail-mix" data-price="7.99" data-name="Trail Mix">Add to Cart</button>
+          </div>
+          <div class="product fade-in">
+            <img src="/images/Dried-Food-category.jpg" alt="Almonds" class="product-img">
+            <h4>Roasted Almonds</h4>
+            <p>AU$8.99/500g</p>
+            <button class="add-to-cart" data-id="almonds" data-price="8.99" data-name="Roasted Almonds">Add to Cart</button>
+          </div>
+          <div class="product fade-in-delay-1">
+            <img src="/images/Dried-Food-category.jpg" alt="Raisins" class="product-img">
+            <h4>Organic Raisins</h4>
+            <p>AU$4.49/200g</p>
+            <button class="add-to-cart" data-id="raisins" data-price="4.49" data-name="Organic Raisins">Add to Cart</button>
+          </div>
+          <div class="product fade-in-delay-2">
+            <img src="/images/Dried-Food-category.jpg" alt="Dates" class="product-img">
+            <h4>Medjool Dates</h4>
+            <p>AU$6.49/250g</p>
+            <button class="add-to-cart" data-id="dates" data-price="6.49" data-name="Medjool Dates">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Floating Cart Button -->
+    <div class="cart-button-container">
+      <a href="/cart" class="cart-button" data-testing="cart-link">
+        🛒
+        <span class="cart-count" id="cart-count">0</span>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Fresh Harvest. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Function to update cart count badge
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('freshHarvestCart')) || [];
+        const count = cart.reduce((total, item) => total + item.quantity, 0);
+        document.getElementById('cart-count').textContent = count;
+      }
+      
+      // Call initially to update the count
+      updateCartCount();
+      
+      // Add event listeners to "Add to Cart" buttons
+      const addToCartButtons = document.querySelectorAll('.add-to-cart');
+      addToCartButtons.forEach(button => {
+        // Remove any existing event listeners
+        button.replaceWith(button.cloneNode(true));
+      });
+      
+      // Re-select buttons after cloning
+      const refreshedButtons = document.querySelectorAll('.add-to-cart');
+      refreshedButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+          const id = this.getAttribute('data-id');
+          const name = this.getAttribute('data-name');
+          const price = parseFloat(this.getAttribute('data-price'));
+          
+          // Get cart from localStorage
+          let cart = JSON.parse(localStorage.getItem('freshHarvestCart')) || [];
+          
+          // Check if item is already in cart
+          const existingItemIndex = cart.findIndex(item => item.id === id);
+          
+          if (existingItemIndex > -1) {
+            // Increment quantity if item already exists
+            cart[existingItemIndex].quantity += 1;
+          } else {
+            // Add new item to cart
+            cart.push({
+              id,
+              name,
+              price,
+              quantity: 1
+            });
+          }
+          
+          // Save cart to localStorage
+          localStorage.setItem('freshHarvestCart', JSON.stringify(cart));
+          
+          // Update cart count
+          updateCartCount();
+          
+          // Show confirmation message
+          const existingMessage = document.querySelector('.add-to-cart-message');
+          if (existingMessage) {
+            existingMessage.remove();
+          }
+          
+          const message = document.createElement('div');
+          message.className = 'add-to-cart-message';
+          message.textContent = `${name} added to cart!`;
+          
+          message.style.position = 'fixed';
+          message.style.bottom = '20px';
+          message.style.right = '20px';
+          message.style.backgroundColor = '#4CAF50';
+          message.style.color = 'white';
+          message.style.padding = '10px 20px';
+          message.style.borderRadius = '4px';
+          message.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+          message.style.zIndex = '1000';
+          
+          document.body.appendChild(message);
+          
+          setTimeout(() => {
+            message.remove();
+          }, 3000);
+        });
+      });
+    });
+  </script>
+</body>
+</html> 
